@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etch A Sketch</title>
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    <script type="text/javascript" src="./src/index.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <h1 class="title">Etch-A-Sketch</h1>
+        </div>
+        <div class="header-right">
+            <ul class="links">
+                <li><a href="#">LinkedIn</a></li>
+                <li><a href="#">GitHub</a></li>
+            </ul>
+        </div>
+    </header>    
+    <main>
+        <div class="settings">
+            <input type="color" name="color-picker" id="color-picker" value="#333333">
+            <button>Picked color</button>
+            <button>Rainbow mode</button>
+            <button>Eraser</button>
+            <button>Clear</button>
+            <div class="grid-value">16 x 16</div>
+            <input type="range" name="size-value" id="size-value" value="16" min="1" max="64">
+        </div>
+        <div class="grid"></div>
+    </main>
+    <footer>
+        <p>Copyright © 2022 Leonel Mosqueda</p>
+    </footer>
+</body>
+</html>
