@@ -62,3 +62,9 @@ a:hover {
     border-radius: 0.5em;
     color: #F9F8F8;
 }
+
+.footer {
+    height: 4em;
+    justify-content: center;
+    align-items: center;
+}
