@@ -58,7 +58,7 @@ a {
 }
 
 a:hover {
-    box-shadow: #0CAADC 0px 0px 15px 0px;
+    text-shadow: 0 15px 10px #0CAADC;
     border-radius: 0.5em;
     color: #F9F8F8;
 }
