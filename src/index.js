@@ -10,6 +10,7 @@ const $inputColor = document.querySelector('input[type="color"]');
 const $btnApplySize = document.querySelector('#btn-apply-size');
 const $btnColorMode = document.querySelector('#btn-color-mode');
 const $btnRainbowMode = document.querySelector('#btn-rainbow-mode');
+const $btnEraserMode = document.querySelector('#btn-eraser-mode');
 
 window.addEventListener('load', () => {
     createGrid(DEFAULT_SIZE);
@@ -99,5 +100,13 @@ $btnRainbowMode.addEventListener('click', () => {
     } else {
         return;
     }
+});
 
+$btnEraserMode.addEventListener('click', () => {
+    if (validateClick('eraser-mode')) {
+        restoreButtonsState('color-mode', 'rainbow-mode');
+        highlightButton('eraser-mode');
+    } else {
+        return;
+    }
 });
