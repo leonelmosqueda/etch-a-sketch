@@ -9,6 +9,7 @@ const $inputColor = document.querySelector('input[type="color"]');
 
 const $btnApplySize = document.querySelector('#btn-apply-size');
 const $btnColorMode = document.querySelector('#btn-color-mode');
+const $btnRainbowMode = document.querySelector('#btn-rainbow-mode');
 
 window.addEventListener('load', () => {
     createGrid(DEFAULT_SIZE);
@@ -68,20 +69,21 @@ function changeHoverColor (color) {
 }
 
 $btnColorMode.addEventListener('click', () => {
-    if (!validateClick($btnColorMode.id)) {
+    if (validateClick('color-mode')) {
+        restoreButtonsState('rainbow-mode', 'eraser-mode');
+        highlightButton('color-mode');
+    } else {
         return;
     }
-
-    restoreButtonsState('rainbow-mode', 'eraser-mode');
 });
 
-function validateClick (idElement) {
-    const element = document.querySelector(`#${idElement}`)
+function validateClick (mode) {
+    const element = document.querySelector(`.${mode}`);
 
-    if (element.classList.contains(`${idElement}-active`)) {
-        return true;
-    } else {
+    if (element.classList.contains(`${mode}-active`)) {
         return false;
+    } else {
+        return true;
     }
 }
 
@@ -89,3 +91,13 @@ function restoreButtonsState (btn1, btn2) {
     document.querySelector(`.${btn1}`).classList.remove(`${btn1}-active`);
     document.querySelector(`.${btn2}`).classList.remove(`${btn2}-active`);
 }
+
+$btnRainbowMode.addEventListener('click', () => {
+    if (validateClick('rainbow-mode')) {
+        restoreButtonsState('color-mode', 'eraser-mode');
+        highlightButton('rainbow-mode');
+    } else {
+        return;
+    }
+
+});
