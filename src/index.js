@@ -5,6 +5,7 @@ const DEFAULT_MODE = 'color-mode';
 const $gridContainer = document.querySelector('#grid-container');
 
 const $inputSizeRange = document.querySelector('input[type="range"]');
+const $inputColor = document.querySelector('input[type="color"]');
 
 window.addEventListener('load', () => {
     createGrid(DEFAULT_SIZE);
@@ -41,3 +42,18 @@ $inputSizeRange.addEventListener('input', () => {
 
     showGridSize(Number(newGridSize));
 });
+
+$inputColor.addEventListener('input', () => {
+    const newColor = document.querySelector('input[type="color"]').value;
+
+    changeHoverColor(newColor);
+});
+
+function changeHoverColor (color) {
+    const gridItems = document.querySelectorAll('.grid-item');
+
+    gridItems.forEach((item) => {
+        item.classList.add('hover');
+        item.setAttribute('style', `--item-background-color: ${color};`);
+    });
+}
