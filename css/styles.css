@@ -154,6 +154,7 @@ button {
     flex-direction: column;
     padding-top: 2em;
     color: white;
+    gap: 1em;
 }
 
 input[type='range'] {

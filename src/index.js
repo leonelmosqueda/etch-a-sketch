@@ -4,6 +4,8 @@ const DEFAULT_MODE = 'color-mode';
 
 const $gridContainer = document.querySelector('#grid-container');
 
+const $inputSizeRange = document.querySelector('input[type="range"]');
+
 window.addEventListener('load', () => {
     createGrid(DEFAULT_SIZE);
     highlightButton(DEFAULT_MODE);
@@ -33,3 +35,9 @@ function showGridSize (size) {
 
     gridSize.textContent = `${size} x ${size}`;
 }
+
+$inputSizeRange.addEventListener('input', () => {
+    const newGridSize = document.querySelector('input[type="range"]').value;
+
+    showGridSize(Number(newGridSize));
+});
