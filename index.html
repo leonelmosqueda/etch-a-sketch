@@ -27,22 +27,22 @@
             <div class="input-color-container">
                 <input type="color" name="input-color" id="input-color" class="input-color" value="#333333">
             </div>
-            <button class="color-mode">Color mode</button>
+            <button class="color-mode color-mode-active" id="btn-color">Color mode</button>
             <div class="container-rainbow-mode">
-                <button class="rainbow-mode">Rainbow mode</button>
+                <button class="rainbow-mode" id="btn-rainbow">Rainbow mode</button>
             </div>
-            <button class="eraser-mode">Eraser</button>
+            <button class="eraser-mode" id="btn-eraser">Eraser</button>
         </div>
         <div class="middle">
-            <div class="grid"></div>
+            <div class="grid" id="grid-container"></div>
             <div class="settings-bottom">
                     <input type="range" name="size-value" id="size-value" value="16" min="10" max="64">
-                    <div class="grid-value"><span id="choosen-grid">16 x 16</span></div>
+                    <div class="grid-value"><span id="choosen-grid">16 x 16</div>
             </div>
         </div>
         <div class="settings-right">
             <button class="clear-grid" id="btn-clear">Clear</button>
-            <button type="button" class="apply-grid">Apply</button>
+            <button type="button" class="apply-grid" id="apply-grid">Apply</button>
         </div>
     </main>
     <footer class="footer">
