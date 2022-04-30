@@ -71,6 +71,8 @@ $btnColorMode.addEventListener('click', () => {
     if (!validateClick($btnColorMode.id)) {
         return;
     }
+
+    restoreButtonsState('rainbow-mode', 'eraser-mode');
 });
 
 function validateClick (idElement) {
@@ -81,4 +83,9 @@ function validateClick (idElement) {
     } else {
         return false;
     }
+}
+
+function restoreButtonsState (btn1, btn2) {
+    document.querySelector(`.${btn1}`).classList.remove(`${btn1}-active`);
+    document.querySelector(`.${btn2}`).classList.remove(`${btn2}-active`);
 }
