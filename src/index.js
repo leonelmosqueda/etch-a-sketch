@@ -8,6 +8,7 @@ const $inputSizeRange = document.querySelector('input[type="range"]');
 const $inputColor = document.querySelector('input[type="color"]');
 
 const $btnApplySize = document.querySelector('#btn-apply-size');
+const $btnColorMode = document.querySelector('#btn-color-mode');
 
 window.addEventListener('load', () => {
     createGrid(DEFAULT_SIZE);
@@ -64,4 +65,20 @@ function changeHoverColor (color) {
         item.classList.add('hover');
         item.setAttribute('style', `--item-background-color: ${color};`);
     });
+}
+
+$btnColorMode.addEventListener('click', () => {
+    if (!validateClick($btnColorMode.id)) {
+        return;
+    }
+});
+
+function validateClick (idElement) {
+    const element = document.querySelector(`#${idElement}`)
+
+    if (element.classList.contains(`${idElement}-active`)) {
+        return true;
+    } else {
+        return false;
+    }
 }
