@@ -153,6 +153,7 @@ button {
     align-items: center;
     flex-direction: column;
     padding-top: 2em;
+    color: white;
 }
 
 input[type='range'] {

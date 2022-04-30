@@ -7,6 +7,7 @@ const $gridContainer = document.querySelector('#grid-container');
 window.addEventListener('load', () => {
     createGrid(DEFAULT_SIZE);
     highlightButton(DEFAULT_MODE);
+    showGridSize(DEFAULT_SIZE);
 })
 
 function createGrid (size) {
@@ -25,4 +26,10 @@ function createGrid (size) {
 
 function highlightButton(mode) {
     document.querySelector(`.${mode}`).classList.add(`${mode}-active`);
+}
+
+function showGridSize (size) {
+    const gridSize = document.querySelector('#grid-size-value');
+
+    gridSize.textContent = `${size} x ${size}`;
 }
