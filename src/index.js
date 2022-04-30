@@ -6,6 +6,7 @@ const $gridContainer = document.querySelector('#grid-container');
 
 window.addEventListener('load', () => {
     createGrid(DEFAULT_SIZE);
+    highlightButton(DEFAULT_MODE);
 })
 
 function createGrid (size) {
@@ -20,4 +21,8 @@ function createGrid (size) {
 
         $gridContainer.appendChild(newGrid);
     }
+}
+
+function highlightButton(mode) {
+    document.querySelector(`.${mode}`).classList.add(`${mode}-active`);
 }
