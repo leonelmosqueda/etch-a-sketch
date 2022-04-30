@@ -7,6 +7,8 @@ const $gridContainer = document.querySelector('#grid-container');
 const $inputSizeRange = document.querySelector('input[type="range"]');
 const $inputColor = document.querySelector('input[type="color"]');
 
+const $btnApplySize = document.querySelector('#btn-apply-size');
+
 window.addEventListener('load', () => {
     createGrid(DEFAULT_SIZE);
     highlightButton(DEFAULT_MODE);
@@ -41,6 +43,12 @@ $inputSizeRange.addEventListener('input', () => {
     const newGridSize = document.querySelector('input[type="range"]').value;
 
     showGridSize(Number(newGridSize));
+});
+
+$btnApplySize.addEventListener('click', () => {
+    const newGridSize = document.querySelector('input[type="range"]').value;
+
+    createGrid(Number(newGridSize));
 });
 
 $inputColor.addEventListener('input', () => {
