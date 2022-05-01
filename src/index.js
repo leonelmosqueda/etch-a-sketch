@@ -9,6 +9,7 @@ const $inputSizeRange = document.querySelector('input[type="range"]');
 const $inputColor = document.querySelector('input[type="color"]');
 
 const $btnApplySize = document.querySelector('#btn-apply-size');
+const $btnClearGrid = document.querySelector('#btn-clear-grid');
 const $btnColorMode = document.querySelector('#btn-color-mode');
 const $btnRainbowMode = document.querySelector('#btn-rainbow-mode');
 const $btnEraserMode = document.querySelector('#btn-eraser-mode');
@@ -52,9 +53,25 @@ $inputSizeRange.addEventListener('input', () => {
 
 $btnApplySize.addEventListener('click', () => {
     const newGridSize = document.querySelector('input[type="range"]').value;
-
+    
+    clearGrid();
     createGrid(Number(newGridSize));
 });
+
+$btnClearGrid.addEventListener('click', () => {
+    const gridSize = document.querySelector('input[type="range"]').value;
+    
+    clearGrid();
+    createGrid(Number(gridSize));
+});
+
+function clearGrid () {
+    const gridItems = document.querySelectorAll('.grid-item');
+
+    gridItems.forEach((item) => {
+        item.remove();
+    });    
+}
 
 $inputColor.addEventListener('input', () => {
     newColor = document.querySelector('input[type="color"]').value;
