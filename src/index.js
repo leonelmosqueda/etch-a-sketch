@@ -56,13 +56,19 @@ $btnApplySize.addEventListener('click', () => {
     
     clearGrid();
     createGrid(Number(newGridSize));
+    changeHoverColor(newColor);
+    restoreButtonsState('rainbow-mode', 'eraser-mode');
+    highlightButton('color-mode');
 });
 
 $btnClearGrid.addEventListener('click', () => {
     const gridSize = document.querySelector('input[type="range"]').value;
-    
+
     clearGrid();
     createGrid(Number(gridSize));
+    changeHoverColor(newColor);
+    restoreButtonsState('rainbow-mode', 'eraser-mode');
+    highlightButton('color-mode');
 });
 
 function clearGrid () {
