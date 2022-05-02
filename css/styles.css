@@ -181,13 +181,7 @@ input[type='range'] {
     cursor: auto;
 }
 
-.grid-item:hover {
-    box-shadow: 0 0 15px 0 #333;
-    background-color: #333;
-}
-
-.hover:hover {
+.hover {
     box-shadow: 0 0 15px 0 var(--item-background-color);
     background: var(--item-background-color);
 }
-
