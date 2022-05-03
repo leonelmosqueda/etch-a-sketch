@@ -20,13 +20,16 @@ const $btnColorMode = document.querySelector('#btn-color-mode');
 const $btnRainbowMode = document.querySelector('#btn-rainbow-mode');
 const $btnEraserMode = document.querySelector('#btn-eraser-mode');
 
+
 window.addEventListener('load', () => {
     createGrid(DEFAULT_SIZE);
     highlightButton(DEFAULT_MODE);
     showGridSize(DEFAULT_SIZE);
     actualMode = 'color-mode';
     selectedColor = DEFAULT_COLOR;
+    selectedGridSize = DEFAULT_SIZE;
 });
+
 
 function createGrid (size) {
     $gridContainer.setAttribute('style', `display: grid;
@@ -43,9 +46,11 @@ function createGrid (size) {
     }
 }
 
+
 function highlightButton(mode) {
     document.querySelector(`.${mode}`).classList.add(`${mode}-active`);
 }
+
 
 function showGridSize (size) {
     const gridSize = document.querySelector('#grid-size-value');
@@ -53,27 +58,35 @@ function showGridSize (size) {
     gridSize.textContent = `${size} x ${size}`;
 }
 
+
+
+
 $inputSizeRange.addEventListener('input', () => {
     selectedGridSize = $inputSizeRange.value;
 
     showGridSize(Number(selectedGridSize));
 });
 
+
 $btnApplySize.addEventListener('click', () => {    
     clearGrid();
     createGrid(Number(selectedGridSize));
     restoreButtonsState('rainbow-mode', 'eraser-mode');
     actualMode = 'color-mode';
+    selectedColor = $inputColor.value;
     highlightButton(actualMode);
 });
+
 
 $btnClearGrid.addEventListener('click', () => {
     clearGrid();
     createGrid(Number(selectedGridSize));
     restoreButtonsState('rainbow-mode', 'eraser-mode');
     actualMode = 'color-mode';
+    selectedColor = $inputColor.value;
     highlightButton(actualMode);
 });
+
 
 function clearGrid () {
     const gridItems = $gridContainer.querySelectorAll('.grid-item');
@@ -83,6 +96,7 @@ function clearGrid () {
     });    
 }
 
+
 $inputColor.addEventListener('input', () => {
     selectedColor = $inputColor.value;
 
@@ -90,6 +104,7 @@ $inputColor.addEventListener('input', () => {
     actualMode = 'color-mode';
     highlightButton(actualMode);
 });
+
 
 $btnColorMode.addEventListener('click', () => {
     if (validateClick('color-mode')) {
@@ -101,6 +116,7 @@ $btnColorMode.addEventListener('click', () => {
     }
 });
 
+
 function validateClick (mode) {
     const element = document.querySelector(`.${mode}`);
 
@@ -111,21 +127,24 @@ function validateClick (mode) {
     }
 }
 
+
 function restoreButtonsState (btn1, btn2) {
     document.querySelector(`.${btn1}`).classList.remove(`${btn1}-active`);
     document.querySelector(`.${btn2}`).classList.remove(`${btn2}-active`);
 }
+
 
 $btnRainbowMode.addEventListener('click', () => {
     if (validateClick('rainbow-mode')) {
         restoreButtonsState('color-mode', 'eraser-mode');
         actualMode = 'rainbow-mode';
         highlightButton(actualMode);
-        selectedColor = 'linear-gradient(91deg, rgba(0, 255, 0, 0.4) 0%, rgba(255, 0, 0, 0.38) 50%, rgba(0, 0, 255, 0.43) 100%)'; // = a una funcion
+        selectedColor = getRandomColor(); //'linear-gradient(91deg, rgba(0, 255, 0, 0.4) 0%, rgba(255, 0, 0, 0.38) 50%, rgba(0, 0, 255, 0.43) 100%)'; = a una funcion
     } else {
         return;
     }
 });
+
 
 $btnEraserMode.addEventListener('click', () => {
     if (validateClick('eraser-mode')) {
@@ -138,9 +157,13 @@ $btnEraserMode.addEventListener('click', () => {
     }
 });
 
+
+
+
 $gridContainer.addEventListener('mouseover', e => {
     applyHover(e.target, selectedColor, actualMode);    
 });
+
 
 $gridContainer.addEventListener('mouseout', e => {
     removeHover(e.target);
@@ -153,18 +176,22 @@ function applyHover (item, color, mode) {
     applyBoxShadow(item, color, mode);
 }
 
+
 function removeHover (item) {
     changeHoverColor(item, currentBackground);
     removeBoxShadow(item);
 }
 
+
 function saveCurrentBackgroundColor (item) {
     return item.style.background;
 }
 
+
 function changeHoverColor(item, color) {
     item.style.background = color;
 }
+
 
 function applyBoxShadow (item, color, mode) {
     if (mode === 'rainbow-mode') {
@@ -173,27 +200,56 @@ function applyBoxShadow (item, color, mode) {
     item.style.boxShadow = `0 0  20px 5px ${color}`;
 }
 
+
 function removeBoxShadow (item) {
     item.style.boxShadow = null;
 }
 
+
+
+
 $gridContainer.addEventListener('mousedown', e => {
     isClickPressed = true;
-    paintBox(e.target);
+    if (actualMode === 'rainbow-mode') {
+        selectedColor = getRandomColor();
+        paintBox(e.target);
+    } else {
+        paintBox(e.target);
+    }
 });
+
 
 $gridContainer.addEventListener('mousemove', e => {
     if (isClickPressed) {
-        paintBox(e.target);
+        if (actualMode === 'rainbow-mode') {
+            selectedColor = getRandomColor();
+            paintBox(e.target);
+        } else {
+            paintBox(e.target);
+        }
     } else return;
 });
+
 
 $gridContainer.addEventListener('mouseup', e => {
     isClickPressed = false;
 })
+
 
 function paintBox (item) {
     item.setAttribute('style', `background: ${selectedColor};`);
     currentBackground = selectedColor;
 }
 
+
+function getRandomColor () {
+    const colorValues = ['0', '1', '2', '3', '4', '5', '6', '7', '8', 'A', 'B', 'C', 'D', 'E', 'F'];
+    let color = "#";
+
+    for (let i = 1; i <= 6; i++) {
+        color += colorValues[Math.floor(Math.random() * colorValues.length)];
+        // console.log(color);
+    }
+
+    return color;
+}
